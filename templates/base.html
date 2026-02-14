@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sanat Breaking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="top-bar-container">
+        <div class="date-time" id="dateTime"></div>
+        <div class="weather" id="weather">Loading weather…</div>
+    </div>
+</div>
+
+<header class="main-header">
+    <div class="header-container">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </a>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-menu" id="navMenu">
+            <ul class="main-menu">
+                <li><a href="{{ url_for('home') }}">होम</a></li>
+
+                <!-- DROPDOWN -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">कैटेगरी ▾</a>
+
+                    <ul class="dropdown-menu">
+                        {% for c in categories %}
+                        <li>
+                            <a href="{{ url_for('category', category=c.category) }}">
+                                {{ c.category }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li><a href="{{ url_for('about') }}">हमारे बारे में</a></li>
+                <li><a href="{{ url_for('contact') }}">संपर्क करें</a></li>
+            </ul>
+        </nav>
+
+        <!-- MOBILE MENU ICON -->
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+</header>
+
+
+
+
+
+
+<div class="breaking">
+    <span>BREAKING</span>
+
+    <marquee behavior="scroll"
+             direction="left"
+             scrollamount="10"
+             onmouseover="this.stop();"
+             onmouseout="this.start();">
+
+        {% for b in breaking %}
+            <a href="{{ url_for('single', id=b['id']) }}">
+                {{ b['title'] }}
+            </a>
+            &nbsp;&nbsp; | &nbsp;&nbsp;
+        {% endfor %}
+
+    </marquee>
+</div>
+
+
+
+{% block content %}{% endblock %}
+
+<a
+  href="https://wa.me/919267670267?text=Hello%20sanatbreaking.com,%20I%20want%20to%20connect%20with%20you"
+  class="whatsapp-float"
+  target="_blank"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer class="site-footer">
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-col footer-brand">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            <p>निष्पक्ष पत्रकारिता व् जनहित सर्वोप्परि !</p>
+        </div>
+
+        <!-- Categories -->
+        <div class="footer-col">
+            <h4>Categories</h4>
+            <ul>
+                <li><a href="/category/Politics">Politics</a></li>
+                <li><a href="/category/Business">Business</a></li>
+                <li><a href="/category/Sports">Sports</a></li>
+                <li><a href="/category/Technology">Technology</a></li>
+            </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/">होम</a></li>
+                <li><a href="/admin" target="_blank">Admin Login</a></li>
+                <li><a href="#">हमारे बारे में</a></li>
+                <li><a href="#">संपर्क करें</a></li>
+            </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-col">
+            <h4>Reach Us</h4>
+      <p>📍 Nahar Pul, Pilkhar, Etawah</p>
+      <p>☎ +91 98765 43210</p>
+      <p>✉ info@sethchamparan</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © {{ 2026 }} sanat breaking. All rights reserved.
+    </div>
+</footer>
+
+
+<script>
+function updateDateTime() {
+    const now = new Date();
+
+    const dateOptions = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    };
+
+    const timeOptions = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
+
+    const date = now.toLocaleDateString('en-IN', dateOptions);
+    const time = now.toLocaleTimeString('en-IN', timeOptions);
+
+    document.getElementById("dateTime").innerText = `${date} | ${time}`;
+}
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+</script>
+
+
+<script>
+const apiKey = "15647ce360ec68ffda7225baad94bd09";
+const city = "Etawah";
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+.then(res => res.json())
+.then(data => {
+    const temp = Math.round(data.main.temp);
+    const condition = data.weather[0].main;
+    document.getElementById("weather").innerText = `🌤 ${city}: ${temp}°C (${condition})`;
+})
+.catch(() => {
+    document.getElementById("weather").innerText = "Weather unavailable";
+});
+</script>
+
+
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
+</script>
+</body>
+</html>
+
+
+

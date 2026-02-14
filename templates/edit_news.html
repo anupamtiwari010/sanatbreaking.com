@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; }
+        form { max-width:600px; margin:20px auto; background:#fff; padding:20px; }
+        input, textarea, select { width:90%; margin:10px 0; padding:10px; }
+        button { background:red; color:#fff; padding:10px; border:none; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Edit News</h2>
+
+<form method="post" enctype="multipart/form-data">
+
+    <input type="text" name="title" value="{{ news.title }}" required>
+
+    <textarea  cols="100" rows="8" name="content">{{ news.content }}</textarea>
+
+    <select name="category">
+        <option selected>{{ news.category }}</option>
+        <option value="राष्ट्रीय">राष्ट्रीय</option>
+        <option value="राजनीति">राजनीति</option>
+        <option value="खेल-कूद">खेल-कूद</option>
+        <option value="शहर">शहर</option>
+        <option value="अपराध">अपराध</option>
+        <option value="राज्य">राज्य</option>
+        <option value="खनन">खनन</option>
+        <option value="व्यापर">व्यापर</option>
+        <option value="साहित्य">साहित्य</option>
+        <option value="संस्कृति ">संस्कृति </option>
+    </select>
+
+    <input type="text" name="video" value="{{ news.video or '' }}" placeholder="Video URL">
+
+    <label>
+        <input type="checkbox" name="is_breaking" {% if news.is_breaking %}checked{% endif %}>
+        Breaking News
+    </label>
+
+    <p>Current Image:</p>
+    {% if news.image %}
+        <img src="/uploads/news/{{ news.image }}" width="120">
+    {% endif %}
+
+    <input type="file" name="image">
+
+    <button type="submit">Update</button>
+
+</form>
+
+<a href="/dashboard">⬅ Back</a>
+
+</body>
+</html>

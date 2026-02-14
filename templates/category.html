@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="category-title">{{ category|upper }}</h2>
+
+<div class="container">
+    {% for n in news %}
+    <div class="card">
+        <img src="{{ n['image'] }}">
+        <h3><a href="/news/{{ n['id'] }}">{{ n['title'] }}</a></h3>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

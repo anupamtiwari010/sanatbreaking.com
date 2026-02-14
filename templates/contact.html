@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+ <section class="about-hero">
+        <div class="about-hero-content">
+          <h1>Contact Us</h1>
+          <p>हमसे संपर्क करें — सुझाव, शिकायत या खबर भेजें</p>
+        </div>
+    </section>
+
+<div class="contact-page">
+
+
+   
+
+   
+
+    <div class="contact-container">
+
+        <!-- CONTACT INFO -->
+        <div class="contact-info">
+            <h3><i class="fa fa-globe" style="font-size:26px;color:red"></i>   <a href="www.sanatbreaking.com" target="_blank">www.sanatbreaking.com</a> </h3>
+            
+
+            <h3><i class="fa fa-phone-square" style="font-size:26px;color:red"></i>   +91 9267670267</h3>
+            
+            <h3><i class="fa fa-comment" style="font-size:26px;color:red"></i>  +91 8077803067 </h3>
+            <h3><i class="fab fa-facebook" style="font-size:26px;color:red"></i>  <a href="https://www.facebook.com/profile.php?id=100076139328501">Click</a> </h3>
+            <h3><i class="fab fa-youtube" style="font-size:26px;color:red"></i>  www.youtube.com </h3>
+
+            <h3><i class="fa fa-envelope" style="font-size:26px;color:red"></i> info@sanatbreaking.com</h3>
+            
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form-box">
+
+            {% if success %}
+            <div class="success-msg">
+                ✅ आपका संदेश सफलतापूर्वक भेज दिया गया!
+            </div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('contact') }}" class="contact-form">
+                <input type="text" name="name" placeholder="आपका नाम" required>
+                <input type="tel" name="mobile" placeholder="मोबाइल नंबर" required pattern="[0-9]{10}">
+                <textarea name="message" placeholder="अपना संदेश लिखें..." required></textarea>
+                <button type="submit">संदेश भेजें</button>
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

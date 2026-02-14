@@ -1,0 +1,42 @@
+<div class="sidebar-box">
+    <h3>Recent Posts</h3>
+
+    {% for post in recent %}
+    <a href="{{ url_for('single', id=post.id) }}" class="recent-post-item">
+
+        <!-- THUMBNAIL -->
+        <div class="recent-thumb">
+
+            {% if post.video %}
+                <!-- YouTube Thumbnail -->
+                {% if "youtube" in post.video or "youtu.be" in post.video %}
+                    {% set vid = post.video.split("embed/")[-1] %}
+                    <img src="https://img.youtube.com/vi/{{ vid }}/mqdefault.jpg" alt="{{ post.title }}">
+                {% else %}
+                    <div class="video-icon">▶</div>
+                {% endif %}
+
+            {% elif post.image %}
+                <img src="{{ url_for('uploaded_image', filename=post.image) }}" alt="{{ post.title }}">
+
+            {% else %}
+                <img src="{{ url_for('static', filename='images/default.jpg') }}" alt="news">
+            {% endif %}
+
+        </div>
+
+        <!-- TITLE -->
+        <div class="recent-title">
+            {{ post.title }}
+        </div>
+
+    </a>
+    {% endfor %}
+</div>
+
+
+
+<div class="sidebar-box">
+    <h3>फेसबुक पर सब्सक्राइब करें</h3>
+            <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100076139328501" data-tabs="timeline" data-width="600" data-height="415" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/profile.php?id=100076139328501" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/profile.php?id=100076139328501">इंजी.सनत तिवारी</a></blockquote></div>
+</div>

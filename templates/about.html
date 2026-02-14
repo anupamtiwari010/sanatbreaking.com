@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="about-hero">
+    <div class="about-hero-content">
+        <h1>हम कौन हैं</h1>
+        <p>सच, साहस और जिम्मेदारी की पत्रकारिता</p>
+    </div>
+</section>
+
+<section class="about-wrapper">
+
+    <!-- ABOUT INTRO -->
+    <div class="about-intro">
+        <h2>About Our News Platform</h2>
+        <p>
+            हम एक स्वतंत्र डिजिटल न्यूज़ प्लेटफॉर्म हैं, जो देश-दुनिया की
+            सटीक, तेज़ और निष्पक्ष खबरें आप तक पहुँचाने के लिए प्रतिबद्ध है।
+            हमारा उद्देश्य सिर्फ़ खबर दिखाना नहीं, बल्कि सच्चाई सामने लाना है।
+        </p>
+    </div>
+
+    <!-- IMAGE + TEXT SECTION -->
+    <div class="about-section reverse">
+        <div class="about-text">
+            <h3>हमारी सोच</h3>
+            <p>
+                पत्रकारिता हमारे लिए पेशा नहीं, जिम्मेदारी है, मेरा धर्म है ।
+                हम हर खबर को तथ्यों, विश्वसनीय स्रोतों और ज़मीनी सच्चाई के साथ
+                प्रस्तुत करते हैं । मैं अपना धर्म पूरी जिम्मेदारी से निभाता हूँ ।
+                 सत्य मेव जयते
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='images/about1.jpg') }}" alt="Our Vision">
+        </div>
+    </div>
+
+    <div class="about-section reverse">
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='images/about2.jpg') }}" alt="Our Team">
+        </div>
+        <div class="about-text">
+            <h3>हमारी टीम</h3>
+            <p>
+                हमारी टीम अनुभवी पत्रकारों, रिपोर्टर्स और डिजिटल विशेषज्ञों से
+                बनी है, जो 24×7 खबरों की निगरानी करते हैं।
+            </p>
+        </div>
+    </div>
+
+    <!-- OPTIONAL THIRD IMAGE -->
+    <div class="about-section reverse">
+        <div class="about-text">
+            <h3>हमारा वादा</h3>
+            <p>
+                हम TRP से नहीं, सच्चाई से समझौता करते हैं।
+                आपकी आवाज़, आपकी खबर — पूरी ईमानदारी के साथ।
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='images/about3.jpg') }}" alt="Our Promise">
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
