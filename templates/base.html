@@ -122,8 +122,8 @@
             <ul>
                 <li><a href="/">होम</a></li>
                 <li><a href="/admin" target="_blank">Admin Login</a></li>
-                <li><a href="#">हमारे बारे में</a></li>
-                <li><a href="#">संपर्क करें</a></li>
+                <li><a href="{{ url_for('about') }}">हमारे बारे में</a></li>
+                <li><a href="{{ url_for('contact') }}">संपर्क करें</a></li>
             </ul>
         </div>
 
@@ -197,6 +197,7 @@ src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
 </script>
 </body>
 </html>
+
 
 
 
