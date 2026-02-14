@@ -37,7 +37,7 @@ img {
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
     padding: 8px 15px;
     display: flex;
@@ -1375,4 +1375,5 @@ img {
     padding: 10px 20px;
     cursor: pointer;
 }
+
 
